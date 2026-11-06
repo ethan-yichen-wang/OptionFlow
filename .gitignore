@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.python-deps/
+build/
+dist/
+data/
+workspace/
+*.parquet
+*.dta
+*.xls
+*.xlsx
+*.duckdb
+*.npy
+*.log

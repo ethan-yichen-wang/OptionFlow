@@ -1,0 +1,5 @@
+﻿model,term,b,se_commodity_cluster,t_commodity_cluster,p_wild_unadjusted,repetitions,seed,cluster,scope
+C,cv,-0.00014414872486918397,0.00015256443930936707,-0.9448382960126253,0.45025497450254975,10000,20261106,commodity,unadjusted_descriptive_supplement_not_two_way_replacement
+C,cp,7.194350251633174e-05,0.00016529623609765572,0.43523981074697965,0.6881311868813119,10000,20261106,commodity,unadjusted_descriptive_supplement_not_two_way_replacement
+G,gv,-0.00039174334064154005,0.0005938123444871273,-0.6597089876598756,0.7163283671632836,10000,20261106,commodity,unadjusted_descriptive_supplement_not_two_way_replacement
+G,gp,0.00027528262677484395,0.00041984380994231253,0.6556786601490406,0.7168283171682832,10000,20261106,commodity,unadjusted_descriptive_supplement_not_two_way_replacement

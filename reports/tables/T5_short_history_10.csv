@@ -1,0 +1,11 @@
+﻿commodity,training_rows,evaluation_rows,U_all,U_120,target_scored
+CZCE:PR,2,237,yes,no,yes
+DCE:CS,52,231,yes,no,yes
+DCE:JD,74,242,yes,no,yes
+DCE:LG,30,228,yes,no,yes
+DCE:LH,59,243,yes,no,yes
+GFEX:PS,2,212,yes,no,yes
+SHFE:AO,48,239,yes,no,yes
+SHFE:NI,47,240,yes,no,yes
+SHFE:PB,48,242,yes,no,yes
+SHFE:SN,46,233,yes,no,yes

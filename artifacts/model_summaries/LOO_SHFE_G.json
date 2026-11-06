@@ -1,0 +1,46 @@
+{
+  "slopes": {
+    "gv": -0.0005849538324224834,
+    "gp": 0.0003582480978157025,
+    "past_return": -0.010577085983002011,
+    "log_volume": -0.00010983418964173911,
+    "log_oi": 0.0007217029584831117
+  },
+  "metadata": {
+    "N_before": 22697,
+    "N_finite": 22697,
+    "N": 22697,
+    "singleton_removed": 0,
+    "singleton_rounds": [],
+    "G": 40,
+    "T": 1455,
+    "clusters": [
+      40,
+      1455,
+      22697
+    ],
+    "K_full": 1499,
+    "rank_FE": 1494,
+    "K_diag": 6,
+    "df_test": 39,
+    "CRV1_full_factor": 1.0706670440607604,
+    "CRV1_diag_factor": 1.0002203516812833,
+    "cov_min_eigenvalue": 4.3181459285541674e-08,
+    "cov_PSD": true,
+    "within_R2": 0.0005057666810056594,
+    "weighted": false,
+    "target": "y",
+    "time_FE": "outcome_date",
+    "estimable_slopes": 5,
+    "weighted_SSE": 3.892002474771961
+  },
+  "features": [
+    "gv",
+    "gp",
+    "past_return",
+    "log_volume",
+    "log_oi"
+  ],
+  "coefficient_scale": "PCR divided by 100; y log return not percent",
+  "protocol_version": "1.0"
+}

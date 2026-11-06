@@ -1,0 +1,289 @@
+{
+  "unit": [
+    "commodity",
+    "date"
+  ],
+  "signal_start": "2019-01-01",
+  "development_outcome_end": "2024-12-31",
+  "evaluation_outcome_start": "2025-01-01",
+  "evaluation_outcome_end": "2025-12-31",
+  "target": "y",
+  "pcr_input_scale": 0.01,
+  "primary_models": {
+    "C": {
+      "pcr": [
+        "cv",
+        "cp"
+      ]
+    },
+    "G": {
+      "pcr": [
+        "gv",
+        "gp"
+      ]
+    }
+  },
+  "controls": [
+    "past_return",
+    "log_volume",
+    "log_oi"
+  ],
+  "primary_fixed_effects": [
+    "commodity",
+    "outcome_date"
+  ],
+  "primary_weights": "one_per_product_day",
+  "primary_clusters": [
+    "commodity",
+    "outcome_date"
+  ],
+  "cluster_covariance": "CGM_two_way_sum_minus_intersection",
+  "component_small_sample_factor": "G_j/(G_j-1)*(N-1)/(N-K)",
+  "rank_K": "full_design_rank_including_intercept_and_absorbed_fixed_effects",
+  "t_degrees_of_freedom": "min(G_commodity-1,G_outcome_date-1)",
+  "primary_hypotheses": [
+    "C:cv=0",
+    "C:cp=0",
+    "G:gv=0",
+    "G:gp=0"
+  ],
+  "primary_test_sidedness": "two_sided",
+  "familywise_adjustment": "Holm",
+  "alpha": 0.05,
+  "wild_bootstrap": {
+    "role": "supplementary_not_replacement_for_two_way",
+    "cluster": "commodity",
+    "weights": "Rademacher",
+    "null_imposed": true,
+    "repetitions": 10000,
+    "seed": 20261106
+  },
+  "supplementary_models": [
+    "A0_contemporaneous",
+    "A1_exact_lags"
+  ],
+  "robustness": {
+    "R1": "log1p_put_minus_log1p_call_on_same_core",
+    "R2": {
+      "rule": "winsorize_predictors_only",
+      "lower": 0.01,
+      "upper": 0.99,
+      "quantile_method": "linear",
+      "fit_on": "development_only_pooled"
+    },
+    "R3": {
+      "status": "retired_before_freeze_no_regression",
+      "previous_threshold": 50,
+      "retained_as": "denominator_structure_diagnostic_only",
+      "reason": "overlap_with_R1_R2; no_search_for_more_effective_threshold"
+    },
+    "R4": {
+      "rule": "calendar_gap_days_at_most",
+      "days": 3
+    },
+    "R5": "roll_at_t_equals_zero_NA_excluded",
+    "R6": {
+      "rule": "observed_product_option_sessions_through_t_at_least",
+      "sessions": 120
+    },
+    "R7": "volume_only_same_core_vs_expanded_without_oi_pcr_requirement",
+    "R8": {
+      "unit": "commodity_delivery_month_date",
+      "weights": "one_over_final_valid_month_count_per_commodity_date_after_singletons",
+      "fixed_effects": [
+        "commodity",
+        "outcome_date"
+      ],
+      "clusters": [
+        "commodity",
+        "outcome_date"
+      ],
+      "G_signal": "gv_gp_repeated_within_commodity_date_no_independent_additional_signal",
+      "collapse_equivalence": "not_automatic_with_month_varying_controls"
+    },
+    "leave_one_exchange_out": [
+      "DCE",
+      "CZCE",
+      "SHFE",
+      "INE",
+      "GFEX"
+    ]
+  },
+  "oos": {
+    "training": "all_development_rows_common_fixed_once",
+    "fit_once": true,
+    "update_with_2025_outcomes": false,
+    "primary_targets": [
+      "absolute_return",
+      "relative_return"
+    ],
+    "primary_universes": {
+      "U_all": {
+        "rule": "seen_training_commodity",
+        "rows": 12039,
+        "products": 51
+      },
+      "U_120": {
+        "rule": "seen_commodity_with_at_least_120_original_development_core_rows",
+        "threshold": 120,
+        "rows": 9692,
+        "products": 41
+      }
+    },
+    "short_history_choice": "co_primary_U120_universe_no_intercept_pooling_no_refit_for_scoring_subset",
+    "short_history_lt120": {
+      "rows": 2347,
+      "products": 10
+    },
+    "new_products": {
+      "policy": "coverage_only_no_imputed_intercept",
+      "rows": 663,
+      "products": 9
+    },
+    "absolute": {
+      "models": {
+        "O0": [],
+        "OC": [
+          "cv",
+          "cp"
+        ],
+        "OG": [
+          "gv",
+          "gp"
+        ]
+      },
+      "controls": [
+        "past_return",
+        "log_volume",
+        "log_oi"
+      ],
+      "training_fixed_effects": [
+        "commodity"
+      ],
+      "date_fixed_effects": false,
+      "benchmark": "O0"
+    },
+    "relative": {
+      "predictors": {
+        "R0": "B_FE",
+        "RC": "C",
+        "RG": "G"
+      },
+      "training_fixed_effects": [
+        "commodity",
+        "outcome_date"
+      ],
+      "refit": false,
+      "prediction_component": "trained_commodity_intercept_plus_trained_slopes_times_t_features_no_2025_date_effect",
+      "centering": "separately_within_each_universe_result_date_same_common_keys",
+      "target": "y_minus_own_universe_result_date_mean_y",
+      "target_mean_enters_predictor": false,
+      "store_raw_prediction_before_scoring": true,
+      "benchmark": "R0"
+    },
+    "primary_comparisons": 8,
+    "date_policy": "intersection_of_U_all_U120_dates_with_at_least_two_distinct_products",
+    "primary_dates": 243,
+    "score_universe_future_observability": "condition_on_observed_valid_outcomes_no_real_time_universe_claim",
+    "primary_score_weights": "equal_result_day_then_equal_product_within_day",
+    "metrics": [
+      "MSE",
+      "RMSE",
+      "MAE",
+      "R2_OS_vs_own_no_PCR_benchmark",
+      "Delta_MSE_benchmark_minus_model"
+    ],
+    "secondary_scores": [
+      "equal_row_weights",
+      "absolute_zero_forecast_benchmark",
+      "absolute_training_product_mean_benchmark",
+      "relative_zero_prediction_benchmark"
+    ],
+    "bootstrap": {
+      "unit": "outcome_date",
+      "method": "paired_circular_moving_block",
+      "block_sessions": 20,
+      "repetitions": 10000,
+      "seed": 20261107,
+      "same_date_draws_across_all_eight_comparisons": true,
+      "resample_size": 243,
+      "reestimate_models": false,
+      "recenter_across_universes": false,
+      "interval": "95_percentile_conditional_on_trained_models",
+      "quantile_method": "linear",
+      "simultaneous_family_coverage": false,
+      "confirmatory_pvalues": false,
+      "zero_benchmark_mse": "R2_NA_no_epsilon_no_substitution"
+    },
+    "interpretation": "pointwise_conditional_model_precision_difference_per_prespecified_cell_no_universal_winner",
+    "trade_execution_claim": false
+  },
+  "disallowed_features": [
+    "next_close_raw",
+    "next_volume_single",
+    "next_settlement",
+    "next_date",
+    "outcome_date",
+    "series_last_observed_date",
+    "option_series_last_day",
+    "series_right_censored",
+    "last_observed_day",
+    "source_terminal_pattern"
+  ],
+  "freeze_date_client": "2026-11-06",
+  "singleton_rule": {
+    "definition": "one_effective_observation_in_an_absorbed_FE_group",
+    "method": "iterative_removal_until_no_singletons_after_model_validity_masks",
+    "paired_models": "share_final_keys",
+    "recompute": [
+      "N",
+      "K_full",
+      "cluster_counts",
+      "R8_month_weights"
+    ],
+    "R8_date_with_one_commodity_multiple_rows": "not_automatically_a_singleton",
+    "oos_relative_minimum_distinct_products_per_day": 2
+  },
+  "software_dof_diagnostic": {
+    "K_diag": "intercept_plus_identifiable_slopes_excluding_nested_FE",
+    "factor": "(N-1)/(N-K_diag)",
+    "replace_primary_inference": false
+  },
+  "A0": {
+    "target": "past_return",
+    "controls": [
+      "log_volume",
+      "log_oi"
+    ],
+    "fixed_effects": [
+      "commodity",
+      "date"
+    ],
+    "clusters": [
+      "commodity",
+      "date"
+    ],
+    "development_only": true
+  },
+  "supplementary_pvalues": {
+    "adjusted": false,
+    "label": "unadjusted_descriptive_only",
+    "consistency_table": [
+      "analysis_id",
+      "reference_model",
+      "term",
+      "estimand_changed",
+      "N_before",
+      "singleton_removed",
+      "N_final",
+      "G",
+      "T",
+      "coefficient",
+      "sign",
+      "ci95_lower",
+      "ci95_upper",
+      "p_unadjusted",
+      "same_sign_as_reference"
+    ]
+  }
+}

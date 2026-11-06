@@ -1,0 +1,5 @@
+﻿term,p_wild_unadjusted,t_oneway_observed,extreme_draws,reps,seed,weights,rng,null_imposed,p_rule,scope,weights_sha256,model
+cv,0.45025497450254975,-0.9448382960126253,4502,10000,20261106,Rademacher,numpy PCG64,True,(exceedances+1)/(B+1),descriptive_supplement_not_two_way_inference,68539eeb20f1c9682fc05637c5d46d0edd0359ce9d3f0251745ca8857cdc9ba8,C
+cp,0.6881311868813119,0.43523981074697965,6881,10000,20261106,Rademacher,numpy PCG64,True,(exceedances+1)/(B+1),descriptive_supplement_not_two_way_inference,68539eeb20f1c9682fc05637c5d46d0edd0359ce9d3f0251745ca8857cdc9ba8,C
+gv,0.7163283671632836,-0.6597089876598756,7163,10000,20261106,Rademacher,numpy PCG64,True,(exceedances+1)/(B+1),descriptive_supplement_not_two_way_inference,68539eeb20f1c9682fc05637c5d46d0edd0359ce9d3f0251745ca8857cdc9ba8,G
+gp,0.7168283171682832,0.6556786601490406,7168,10000,20261106,Rademacher,numpy PCG64,True,(exceedances+1)/(B+1),descriptive_supplement_not_two_way_inference,68539eeb20f1c9682fc05637c5d46d0edd0359ce9d3f0251745ca8857cdc9ba8,G

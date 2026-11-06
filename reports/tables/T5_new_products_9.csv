@@ -1,0 +1,10 @@
+﻿commodity,training_rows,evaluation_rows,U_all,U_120,target_column_read_for_scoring
+CZCE:PL,0,104,no,no,no
+DCE:BZ,0,119,no,no,no
+GFEX:PD,0,23,no,no,no
+GFEX:PT,0,23,no,no,no
+SHFE:AD,0,139,no,no,no
+SHFE:BU,0,54,no,no,no
+SHFE:FU,0,74,no,no,no
+SHFE:OP,0,73,no,no,no
+SHFE:SP,0,54,no,no,no
