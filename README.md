@@ -1,5 +1,7 @@
 # OptionFlow
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 ### Option Activity and Commodity Futures Returns
 
 **Does today's option activity contain information about tomorrow's commodity futures return?**
@@ -27,8 +29,8 @@ The 61 products form an unbalanced panel: contracts enter as matching option and
 
 ## Read the study
 
-- [Full results](reports/RESULTS.md) and [methods](reports/METHODS.md) — detailed Chinese-language report with numerical tables.
-- [Data and construction rules](docs/DATA.md) and [data dictionary](docs/DATA_DICTIONARY.md).
+- [Full results](reports/RESULTS.md) and [methods](reports/METHODS.md) — complete English reports with [Chinese results](reports/RESULTS.zh-CN.md) and [Chinese methods](reports/METHODS.zh-CN.md).
+- [Data and construction rules](docs/DATA.md) and [data dictionary](docs/DATA_DICTIONARY.md) ([Chinese dictionary](docs/DATA_DICTIONARY.zh-CN.md)).
 - [Study design](config/study_design.json), [table index](reports/TABLE_INDEX.md), and [method references](reports/REFERENCES.md).
 - [Historical holdout disclosure](reports/HOLDOUT_DISCLOSURE.md) and [reproducibility scope](docs/REPRODUCIBILITY.md).
 

@@ -54,17 +54,23 @@
     "config/source_manifest.csv": "50ceb8aca07bc25eb54d1f1bd9ead0a1a7945fe1cb0f143b106ed0b39e1331af",
     "config/study_design.json": "635312cd5c076c8ba90eb232edfc025e6ab456fd22b41fe7f5cde48aa70297b6",
     "docs/DATA.md": "67a5aabaec077fe4b044165511b365236b3808812dfcbb7d469fde94f5639382",
-    "docs/DATA_DICTIONARY.md": "609222925183a0c4f51a6d9d8b808d276b19bf29cb499c44fe9393bb20841b9c",
+    "docs/DATA_DICTIONARY.md": "c41fb68934e6df2c513021a874704bf0b52aa7425c78c6ee2c593f28fc4e8921",
+    "docs/DATA_DICTIONARY.zh-CN.md": "4e422dcd7da32a365c6f0ed2676a459f146a77981783202768c3faa846318f38",
     "docs/REPRODUCIBILITY.md": "3c2dd0b2039e635274c96e7dbbdc36c96cad392b3c9ed0c2b222e1bfeffc7d88",
     "pyproject.toml": "c1c4e144b03cb60417b1fd02cde9c991558033c0e0717cd0c1b42e846a5f65b0",
-    "README.md": "4eff9280873e2c1241a5a7b7d2c68ed94244a384500baefb29b056078502580c",
+    "README.md": "1700377acd03e2f35d91896aa7785e8de5b8a8c0a86bbc6271fc37805d6ff3ff",
+    "README.zh-CN.md": "dc0b8687bfc13c2ba2b316b9ad9b908dbc1fbdabcb61947fdfea1a234a6d09c0",
     "reports/figures/T5_MSE_forest.png": "9a735d0102bf5a5d50394766428b74e8e5f2794a8aeda263b52266daf4663d48",
     "reports/figures/T5_MSE_forest.svg": "2f865e9d9c9c5e4de1df8265245e6f14b672dfb7eb9d1ca4f9d521ac9a4edce6",
     "reports/HOLDOUT_DISCLOSURE.md": "c61b111d0faff2aa616a7b4a029d49b77331e7c10d96da9296f4f6e577f33131",
-    "reports/METHODS.md": "46903fda8918713ff8cbaa275f206d91852873337b5c52e09de9df6187d34920",
-    "reports/REFERENCES.md": "1d4cf135f8017fcec961a0c48e71dee471b9139ad26509c040b7a76856af105d",
-    "reports/RESULTS.md": "d5b03034fb797f04743dcc26253fb00813436c09fea05ff822bcc37319e59a2e",
-    "reports/TABLE_INDEX.md": "8a3799b5b343404739592f05cae04c0231158e598b022c4da0752c796c99c7b1",
+    "reports/METHODS.md": "ebc6b0cb26263ed3800461de391b9a935a4c0e7d5a24eb4a8ae40f76b93844c8",
+    "reports/METHODS.zh-CN.md": "f690c380761c165fe4cb9b6eba4e61571be8c12d52a5f9fa1d717e69fd66e91a",
+    "reports/REFERENCES.md": "9c387957a1541709ae251c46e02d2506cfdefd70d423eede82407a766fa10cb0",
+    "reports/REFERENCES.zh-CN.md": "467b7c67e0c429594371eefb9d0222a942d3fd4b40e186628a2f5ea297d394a5",
+    "reports/RESULTS.md": "139291b9b51dbc506647f1c5961c794c9a3dd673c5eaee8586a733e080bea657",
+    "reports/RESULTS.zh-CN.md": "05fbe44c1add40d67b336f43195b3427b2b045201e2d7cf63db326fc8c725b89",
+    "reports/TABLE_INDEX.md": "d7ba48bd0aedbd1bbf9e16205547410b2624cb1d790d2be8002ceff3581e778f",
+    "reports/TABLE_INDEX.zh-CN.md": "4776e34f3867a3663f125cfa4818f611cac6ff32caa0f2d8e65639e311ffa1ba",
     "reports/tables/A0_contemporaneous.csv": "350149b396328ffeb854da1c51b4d56ebbc1a3e804fa30682894b8fcd3571a1c",
     "reports/tables/all_coefficients.csv": "d927ccf2c7604e2ecf234f668a499133adb431a79c67fdc2c961eb4e04e5fe28",
     "reports/tables/all_covariances.csv": "5756ac8e5ad034fceb867e22276f082433bb6880de76d21c203566b2e976fe8a",
@@ -91,5 +97,13 @@
     "src/optionflow/estimation.py": "019138b909509c64b4e1d2d04def6df6583559170cb2f1592bf314ad4d4af50f",
     "src/optionflow/scoring.py": "c8b54eb16a57967c249fdef91eafc035e1371b099044638026ee1f45c0303783",
     "tests/test_core.py": "5c4daad80337debc14856ac1cae4e91327f979474f870ec624967351272d7d4c"
+  },
+  "documentation_languages": {
+    "default": "en",
+    "available": [
+      "en",
+      "zh-CN"
+    ],
+    "counterpart_suffix": ".zh-CN.md"
   }
 }

@@ -1,168 +1,172 @@
-# OptionFlow：研究结果与解释
+# OptionFlow: Results and interpretation
 
-研究问题、样本、主要及补充结果和推断边界如下。
+[English](RESULTS.md) | [简体中文](RESULTS.zh-CN.md)
 
-## 1. 这项研究回答了什么
+This report presents the research question, samples, primary and supplementary results, and limits of inference.
 
-在中国五个商品期货交易所的官方数据中，我们研究：当天最活跃期货月份对应的期权看跌/看涨成交量比及持仓比，能否为同合约下一交易日价格收益提供信息？另以同商品全部期权月份汇总的PCR检验另一种指标口径。
+## 1. Research question and main finding
 
-**在预先规定的日频线性规格中，开发期未发现明确的次日条件关联；固定模型在2025年的八个预定评估单元，也均未显示相对于各自无PCR基准的明确增量预测精度差异。** 部分同期关联仍然存在，但不能作为次日预测证据。
+Using official data from five Chinese commodity exchanges, we ask whether the current day's option put–call volume and open-interest ratios contain information about the next-session price return of the same volume-selected futures contract. A second aggregation sums options across all regular delivery months of the same commodity.
 
-这是一项有明确范围的阴性结果。它不证明PCR在所有市场、模型、期限或信息集中恒无作用，也不构成已完成的等效性检验或因果识别。项目的数据构造与验证目标完成，所检验的预测假说没有得到明确支持。
+**The prespecified daily linear specifications provide no clear evidence of a next-day conditional association in development. In the eight prespecified 2025 evaluation cells, the fixed PCR models also show no clear incremental forecast-accuracy difference relative to their corresponding no-PCR benchmarks.** Some contemporaneous associations remain, but they are not evidence of next-day prediction.
 
-## 2. 开发期：系数的方向不等于存在预测证据
+This is a negative finding with a defined scope. It does not establish that PCR is uninformative in every market, model, horizon or information set. It is neither a completed equivalence test nor a causal identification result. The data-construction and verification objectives were met; the tested predictive hypothesis did not receive clear support.
 
-开发期按收益实现日划为2019—2024，共30,377个商品日、52个品种、1,455个结果日。两个模型分别同时纳入月份CV/CP、商品GV/GP，控制当日已实现收益、期货单边成交量和持仓的log(1+x)，吸收商品和结果日固定效应，标准误按商品/结果日双向聚类。四个核心双侧检验统一作Holm校正。
+## 2. Development: coefficient signs are not predictive evidence
 
-| 指标 | 原始p | Holm p | IQR关联量级（log bp） | 逐项95%区间（log bp） |
+The development sample is assigned by outcome date and covers 2019–2024: 30,377 commodity-days, 52 products and 1,455 outcome dates. Model C includes contract-month CV and CP jointly; model G includes commodity-level GV and GP jointly. Both control for the return already realized on the signal day and log(1+x) of same-day single-sided futures volume and open interest. They absorb commodity and outcome-date fixed effects, with two-way clustering by those dimensions. The four core two-sided tests form one Holm-adjusted family.
+
+| Predictor | Unadjusted p | Holm p | IQR association (log bp) | Pointwise 95% interval (log bp) |
 |---|---|---|---|---|
-| 月份成交量PCR | 0.372 | 1.000 | -0.80 | [-2.58, 0.98] |
-| 月份持仓PCR | 0.779 | 1.000 | 0.41 | [-2.53, 3.35] |
-| 商品成交量PCR | 0.539 | 1.000 | -2.03 | [-8.60, 4.55] |
-| 商品持仓PCR | 0.568 | 1.000 | 1.49 | [-3.71, 6.69] |
+| Contract-month volume PCR | 0.372 | 1.000 | -0.80 | [-2.58, 0.98] |
+| Contract-month open-interest PCR | 0.779 | 1.000 | 0.41 | [-2.53, 3.35] |
+| Commodity-level volume PCR | 0.539 | 1.000 | -2.03 | [-8.60, 4.55] |
+| Commodity-level open-interest PCR | 0.568 | 1.000 | 1.49 | [-3.71, 6.69] |
 
-IQR表示开发期原指标的合并分布第75与第25百分位之差；表中量级为IQR×系数×10,000，保持其他模型项不变。区间来自同一系数的逐项95%区间，不是因果效应区间，也不是四项同时区间。
+IQR is the difference between the 75th and 25th percentiles of each PCR's pooled development distribution in model-input ratio units (after division by 100). The reported association equals IQR × coefficient × 10,000, holding the other model terms fixed. Each interval is a rescaling of that coefficient's pointwise 95% interval; it is neither a causal-effect interval nor simultaneous coverage of all four terms.
 
-四项原始p在0.372—0.779之间，Holm p均为1。这个1不表示“原假设为真的概率为100%”。CV/GV点估计为负、CP/GP为正，但本样本中的方向并不足以支持确定的次日关系。区间保留一定大小的正负关系，未拒绝零不等于已经证明关系严格为零。
+Unadjusted p-values range from 0.372 to 0.779; all Holm p-values equal 1. A value of 1 does not mean a 100% probability that the null hypothesis is true. CV/GV estimates are negative and CP/GP estimates positive, but these directions do not establish a next-day relationship. The intervals retain positive and negative possibilities: failure to reject zero does not prove an exactly zero effect.
 
-预先登记的补充推断数值如下。SE及t只按商品聚类；WCR-t按商品聚类并施加零原假设，Rademacher、10,000次、种子20261106，p未校正。
+The prespecified supplementary inference is below. SE and t use commodity clustering only. The restricted wild cluster bootstrap-t (WCR-t) imposes the zero null, uses Rademacher weights, 10,000 repetitions and seed 20261106. Its p-values are unadjusted.
 
-| 指标 | 商品聚类SE | 商品聚类t | wild bootstrap p（未校正） |
+| Predictor | Commodity-clustered SE | Commodity-clustered t | Wild bootstrap p (unadjusted) |
 |---|---|---|---|
-| 月份成交量PCR | 1.526E-4 | -0.94 | 0.450 |
-| 月份持仓PCR | 1.653E-4 | 0.44 | 0.688 |
-| 商品成交量PCR | 5.938E-4 | -0.66 | 0.716 |
-| 商品持仓PCR | 4.198E-4 | 0.66 | 0.717 |
+| Contract-month volume PCR | 1.526E-4 | -0.94 | 0.450 |
+| Contract-month open-interest PCR | 1.653E-4 | 0.44 | 0.688 |
+| Commodity-level volume PCR | 5.938E-4 | -0.66 | 0.716 |
+| Commodity-level open-interest PCR | 4.198E-4 | 0.66 | 0.717 |
 
-这些补充结果也未给出明确的次日关联支持，但它们只处理商品维度依赖，不替代主双向聚类和四项Holm推断。完整原值见tables/T3_wild_descriptive.csv，单向SE/t与WCR对照见tables/T3_supplementary_inference.csv；没有再次估计或抽样。
+These supplementary results likewise provide no clear support for next-day association. They address commodity dependence only and do not replace the primary two-way covariance and Holm inference. Exact values are in [T3_wild_descriptive.csv](tables/T3_wild_descriptive.csv); the SE/t/WCR comparison is in [T3_supplementary_inference.csv](tables/T3_supplementary_inference.csv). These are existing estimates, not another round of estimation or resampling.
 
-点估计的IQR关联量级约−0.80、+0.41、−2.03、+1.49个对数收益基点。它们提供模型内尺度，不应据其小于单日波动就宣告统计上已证明“经济作用为零”。
+The IQR associations are approximately −0.80, +0.41, −2.03 and +1.49 log-return basis points. These are within-model scales. Their small size relative to daily variation does not statistically establish an economically zero effect.
 
-## 3. 预定补充分析提供了哪些信息
+## 3. Prespecified supplementary analyses
 
-加严格滞后、数量平滑对数比、固定缩尾、去长假、主力稳定、成熟度、成交量扩展、全部月份及逐所剔除均按原登记执行。R3的分母>=50额外回归在冻结前撤销；最终T4保留“未估计”一行。
+Exact lags, smoothed log quantity ratios, fixed winsorization, long-gap exclusions, stable selected contracts, option-history maturity, volume-only sample expansion, all-month coverage and leave-one-exchange-out analyses follow the recorded design. The additional R3 regression with a denominator >=50 was withdrawn before the protocol was frozen; T4 retains a not-estimated row.
 
-汇总中的56个预测类PCR系数均未达到未校正p<0.10，最小约0.165。这个集合排除同期A0和A1的4项配对基准（它们的p约0.38—0.75），包含R7核心/扩展的单PCR回归；它不是56次相互独立的检验，也不以“多少项不显著”投票证明原假设。完整系数和参照关系见`tables/T4_consistency_lossless.csv`，各p只作描述性补充。
+None of the 56 predictive PCR coefficients in this summary has an unadjusted p<0.10; the smallest is approximately 0.165. The set excludes contemporaneous A0 and the four A1 paired-baseline terms (their p-values are approximately 0.38–0.75), and includes the R7 core/expanded single-PCR regressions. These are not 56 independent tests, and the count of non-rejections is not a vote proving the null. See [T4_consistency_lossless.csv](tables/T4_consistency_lossless.csv) for coefficients and references; supplementary p-values are descriptive.
 
-R7将共同核心样本扩为30,726行，增加的349个开发期商品日全部是期权系列最后观察日，看涨持仓为0，导致月份持仓PCR无定义；商品持仓PCR仍有效，没有一行是样本截止造成的右删失。该对照针对共同完整样本的选择，不把零持仓分母补成有限PCR，也没有认证所有末观察日均为官方到期日。
+R7 expands the common core to 30,726 rows. All 349 additional development commodity-days are last-observed option-series days with zero call open interest: contract-month open-interest PCR is undefined, while commodity-level open-interest PCR remains valid. None is right-censored by the sample endpoint. This comparison targets selection into the common complete-case sample, does not replace a zero denominator with a finite ratio, and does not certify every last-observed day as an official expiry date.
 
-R8使用全部普通交割月份，共144,160个合约日、32,552个商品日，每个商品日各月份权重和为1。它的观察范围、权重及PCR尾部分布不同于主力面板。独立复核指出远月小分母会产生很大的比例值；不能仅凭系数更小就认定“全月份预测更弱/更稳健”，未在评分后追加阈值选择。R8-G同一商品日各月份共享gv/gp，不能视为新增了独立PCR信号。
+R8 includes all ordinary delivery months: 144,160 contract-days and 32,552 commodity-days, with month weights summing to 1 within each commodity-day. Coverage, weights and the PCR tail distribution differ from the selected-contract panel. Independent checks found large ratios in distant months with small denominators. Smaller coefficients alone cannot establish weaker or more robust prediction; no threshold was added after scoring. In R8-G, delivery months within one commodity-day share GV/GP, so they do not add independent PCR signals.
 
-## 4. 2025：同时报告总收益与相对收益
+## 4. 2025: raw and relative returns
 
-所有预测由2019—2024训练模型生成并固定，无2025再训练、参数更新或事后日期效应。总收益使用O0/OC/OG；相对收益使用含日期FE模型的非日期分量，分别在各集合、各日对预测与真实收益去均值，R0仍是无PCR模型，不是零预测。
+Predictions use models trained on 2019–2024 and then fixed: no 2025 retraining, parameter updates or ex post date effects. O0/OC/OG predict the raw price return. Relative forecasts use the non-date component of models trained with date fixed effects, with predictions and realized returns centered separately within each universe and date. R0 remains a no-PCR model, not a zero forecast.
 
-U_all为51个已见品种、12,039行；U_120为其中训练>=120个核心行的41个品种、9,692行。两者均覆盖243个结果日，先对日内商品等权算损失，再对日期等权。九个新品种只报告覆盖。
+The code label `absolute` and the figure label “Absolute” denote the **signed raw log price return**, not the absolute value of a return or a total investment return including financing or collateral income.
 
-ΔMSE=无PCR基准MSE−PCR模型MSE，正值的定义是误差改善。1个log bp=0.0001的对数收益，因此MSE及区间乘10⁸成为bp²；R²_OS原比例乘100显示为百分数。
+U_all contains 51 previously observed products and 12,039 rows. U_120 is its subset of 41 products with >=120 development core rows, totaling 9,692 rows. Both cover 243 outcome dates. Losses are first averaged equally across products within a date, then equally across dates. Nine new-to-development products receive coverage reporting only.
 
-| 目标 | 集合 | PCR口径 | ΔMSE（bp²） | 95%条件区间（bp²） | R²_OS（%） | 95%条件区间（%） |
+Delta MSE = no-PCR benchmark MSE − PCR-model MSE; a positive value means a smaller model error. One log bp is 0.0001 log-return units, so multiplying MSE and its interval by 10⁸ expresses them in bp². Multiplying R²_OS by 100 expresses it as a percentage.
+
+| Target | Universe | PCR aggregation | Delta MSE (bp²) | Conditional 95% interval (bp²) | R²_OS (%) | Conditional 95% interval (%) |
 |---|---|---|---|---|---|---|
-| 总收益 | U_all | 月份口径 | 4.79 | [-1.28, 9.86] | 0.029 | [-0.008, 0.063] |
-| 总收益 | U_all | 商品口径 | 12.93 | [-2.59, 26.60] | 0.079 | [-0.015, 0.171] |
-| 相对收益 | U_all | 月份口径 | -0.78 | [-3.81, 2.39] | -0.006 | [-0.030, 0.018] |
-| 相对收益 | U_all | 商品口径 | 2.94 | [-4.55, 10.00] | 0.023 | [-0.035, 0.079] |
-| 总收益 | U_120 | 月份口径 | 0.23 | [-3.63, 3.64] | 0.001 | [-0.022, 0.023] |
-| 总收益 | U_120 | 商品口径 | 1.82 | [-8.21, 12.40] | 0.011 | [-0.050, 0.081] |
-| 相对收益 | U_120 | 月份口径 | -1.12 | [-4.07, 1.79] | -0.009 | [-0.034, 0.015] |
-| 相对收益 | U_120 | 商品口径 | -1.73 | [-8.18, 4.41] | -0.014 | [-0.066, 0.036] |
+| Raw return | U_all | Contract-month | 4.79 | [-1.28, 9.86] | 0.029 | [-0.008, 0.063] |
+| Raw return | U_all | Commodity-level | 12.93 | [-2.59, 26.60] | 0.079 | [-0.015, 0.171] |
+| Relative return | U_all | Contract-month | -0.78 | [-3.81, 2.39] | -0.006 | [-0.030, 0.018] |
+| Relative return | U_all | Commodity-level | 2.94 | [-4.55, 10.00] | 0.023 | [-0.035, 0.079] |
+| Raw return | U_120 | Contract-month | 0.23 | [-3.63, 3.64] | 0.001 | [-0.022, 0.023] |
+| Raw return | U_120 | Commodity-level | 1.82 | [-8.21, 12.40] | 0.011 | [-0.050, 0.081] |
+| Relative return | U_120 | Contract-month | -1.12 | [-4.07, 1.79] | -0.009 | [-0.034, 0.015] |
+| Relative return | U_120 | Commodity-level | -1.73 | [-8.18, 4.41] | -0.014 | [-0.066, 0.036] |
 
-八个ΔMSE区间全部跨0。按冻结规则，各格均为“未见明确误差差异”。总收益四格点估计都为正；相对收益四格一正三负。八格共享结果日和区块索引，同一目标下两种PCR共用基准，U_120又是U_all的子集，因此这些符号不是独立证据，不能按正负数量投票。两集合差别本身没有区间、商品构成也不同，不能据此把差别归因于训练长度。
+All eight Delta MSE intervals span 0. Under the frozen interpretation rule, every cell shows no clear error difference. All four raw-return point estimates are positive; the four relative-return estimates have one positive and three negatives. The cells share dates and block indices; both PCR models for one target share a benchmark, and U_120 is nested within U_all. These signs are therefore not independent evidence and cannot be counted as votes. The difference between universes has no reported interval, and their product composition differs, so it cannot be attributed to training-history length.
 
-区间使用同一份20结果日循环区块、10,000次重抽的95%经验百分位，条件于已固定训练模型；它不是八项全族同时区间，也不包含全部训练参数不确定性。不能将“区间跨0”升级为对所有嵌套模型零假设的严格总体证明。第二关的端点Monte Carlo误差检查支持本次跨0判读并非由有限抽样误差驱动，但不保证任意重抽样永远相同。
+Intervals use the same 20-outcome-date circular blocks and 10,000 resamples, taking 95% empirical percentiles conditional on fixed training models. They are not familywise simultaneous intervals and do not include all training-parameter uncertainty. Spanning zero is not a general proof of every nested-model null. The independent Monte Carlo endpoint check supports the present zero-crossing interpretation as not driven by finite resampling noise; it does not guarantee identical conclusions under every possible resample.
 
-| 目标 | 集合 | 无PCR基准 | 基准RMSE（log bp） |
+| Target | Universe | No-PCR benchmark | Benchmark RMSE (log bp) |
 |---|---|---|---|
-| 总收益 | U_all | O0 | 127.86 |
-| 相对收益 | U_all | R0 | 113.48 |
-| 总收益 | U_120 | O0 | 126.57 |
-| 相对收益 | U_120 | R0 | 111.12 |
+| Raw return | U_all | O0 | 127.86 |
+| Relative return | U_all | R0 | 113.48 |
+| Raw return | U_120 | O0 | 126.57 |
+| Relative return | U_120 | R0 | 111.12 |
 
-以下例子是八格中ΔMSE点估计最大的一格，仅解释单位，不代表一般效果：U_all总收益的商品口径，ΔMSE约12.93 bp²、R²_OS约0.079%。这不是赚到12.93 bp：它描述的是平方预测误差差异，基准RMSE约127.86 log bp、模型约127.81 log bp。R²_OS的0.079%也不是投资回报率。
+The following is the cell with the largest Delta MSE point estimate among the eight, used only to explain units: commodity-level PCR for U_all raw returns has Delta MSE approximately 12.93 bp² and R²_OS approximately 0.079%. This is not a profit of 12.93 bp. It is a difference in squared prediction errors: benchmark RMSE is approximately 127.86 log bp and model RMSE approximately 127.81 log bp. R²_OS of 0.079% is not an investment return.
 
-全部20个预定次要比较见`tables/T5_secondary_readable.csv`。逐行等权结果没有改变主要图景；相对于零预测的R²_OS点估计均为负。换用训练均值基准时部分点估计略正、部分略负，没有为这些次要数值新增区间或确认性检验。它们不能替代事先约定的主要基准和八格完整报告。
+All 20 prespecified secondary comparisons are in [T5_secondary_readable.csv](tables/T5_secondary_readable.csv). Equal-row weighting leaves the main picture unchanged. PCR-model R²_OS point estimates against zero forecasts are all negative. Using training-product means as the benchmark yields small positive and negative estimates; no additional intervals or confirmatory tests are introduced for these secondary values. They do not replace the agreed primary benchmarks or complete eight-cell reporting.
 
-零预测的背景需要同时看无PCR模型。下表无PCR一列由主表基准MSE与次要表零基准MSE代数换算，PCR两列引用既有次要评分；没有新增预测、损失序列、区间或检验。
+Zero-forecast comparisons also require the no-PCR context. The no-PCR column below is an algebraic conversion of the reported primary benchmark MSE and secondary zero-forecast MSE; both PCR columns use existing secondary scores. No new forecasts, loss sequences, intervals or tests were generated.
 
-| 目标 | 集合 | 模型顺序 | 无PCR基准对零R²（%） | PCR月份对零R²（%） | PCR商品对零R²（%） |
+| Target | Universe | Model order | No-PCR vs zero R² (%) | Contract-month PCR vs zero R² (%) | Commodity PCR vs zero R² (%) |
 |---|---|---|---|---|---|
-| 总收益 | U_all | O0 / OC / OG | -1.09 | -1.06 | -1.01 |
-| 总收益 | U_120 | O0 / OC / OG | -0.23 | -0.23 | -0.22 |
-| 相对收益 | U_all | R0 / RC / RG | -0.78 | -0.79 | -0.76 |
-| 相对收益 | U_120 | R0 / RC / RG | -0.30 | -0.31 | -0.32 |
+| Raw return | U_all | O0 / OC / OG | -1.09 | -1.06 | -1.01 |
+| Raw return | U_120 | O0 / OC / OG | -0.23 | -0.23 | -0.22 |
+| Relative return | U_all | R0 / RC / RG | -0.78 | -0.79 | -0.76 |
+| Relative return | U_120 | R0 / RC / RG | -0.30 | -0.31 | -0.32 |
 
-无PCR基准相对零预测本身也为负：O0约−1.09%/−0.23%，R0约−0.78%/−0.30%，与对应PCR模型相近。因此，不能把“PCR模型误差高于零预测”归结为PCR造成的拖累。高于零预测的现象在共同基准中已存在；现有比较没有分解品种截距、各控制变量、估计误差或它们的组合贡献，不能据此断言具体成因。PCR的增量仍以其与自身O0/R0基准的主要比较为准。
+The no-PCR benchmarks themselves perform worse than zero: O0 is approximately −1.09%/−0.23%, and R0 approximately −0.78%/−0.30%, similar to the corresponding PCR models. Thus, the PCR models' higher error than zero cannot be attributed to PCR. The phenomenon already appears in the no-PCR benchmarks. These comparisons do not decompose commodity intercepts, controls, estimation noise or their joint contributions, and cannot establish a specific cause. Incremental PCR information is assessed against each model's own O0/R0 benchmark.
 
-区间图见`figures/T5_MSE_forest.png`及同名SVG。图只绘制已审核端点，没有重新抽样。
+The interval plot is [T5_MSE_forest.png](figures/T5_MSE_forest.png), also available as [SVG](figures/T5_MSE_forest.svg). It plots the reviewed estimates and endpoints without new resampling.
 
-## 5. 同期关联为什么不能当成次日预测
+## 5. Why contemporaneous association is not next-day prediction
 
-同一开发期样本的A0将因变量改为当天已实现收益，控制数量变量、商品及信号日FE，并按商品/信号日聚类；没有把当天收益同时放在右侧。
+A0 uses the same development sample but changes the dependent variable to the return already realized on the signal day. It controls for quantities and commodity/signal-date fixed effects, clusters by commodity/signal date, and does not also include that same return on the right-hand side.
 
-| 指标 | 系数（每提高1个PCR比值单位） | 未校正p |
+| Predictor | Coefficient per unit of the PCR ratio | Unadjusted p |
 |---|---|---|
-| 月份成交量PCR | -0.001546 | 5.998E-2 |
-| 月份持仓PCR | 0.001869 | 5.762E-4 |
-| 商品成交量PCR | -0.006323 | 2.647E-14 |
-| 商品持仓PCR | 0.004665 | 1.613E-9 |
+| Contract-month volume PCR | -0.001546 | 5.998E-2 |
+| Contract-month open-interest PCR | 0.001869 | 5.762E-4 |
+| Commodity-level volume PCR | -0.006323 | 2.647E-14 |
+| Commodity-level open-interest PCR | 0.004665 | 1.613E-9 |
 
-商品层两种PCR和月份持仓PCR显示较强的未校正同期关联；月份成交量PCR的p约0.060，未达到5%水平。不能把四项统称为均显著。同期与次日问题的因变量和控制设定不同，前者的显著性不能转移给后者；“同期显著、次日不显著”也不是已经直接检验了两组系数差异显著。
+Both commodity-level PCRs and contract-month open-interest PCR show stronger unadjusted contemporaneous associations. Contract-month volume PCR has p approximately 0.060 and does not meet the 5% threshold; the four terms cannot all be described as significant. Contemporaneous and next-day specifications differ in their dependent variable and controls. Significance does not transfer from one to the other, and “significant now, insignificant tomorrow” is not itself a direct test of a coefficient difference.
 
-这些结果可以与交易活动对当日价格变动的反应、套保行为或共同冲击相容，但本设计没有识别方向或机制。PCR是交易活动/持仓的比值，并没有按订单发起方识别净买入压力，不能直接把系数解释成情绪导致价格修复。
+The results are consistent with trading responses to current price movements, hedging activity or common shocks, but the design identifies neither direction nor mechanism. PCR measures activity/position ratios without identifying order-initiator-side net buying pressure. Its coefficient is not a causal estimate of sentiment-driven price correction.
 
-## 6. 最终覆盖表：谁被评分，谁没有
+## 6. Coverage: which products were scored?
 
-核心全期共61品种、43,079行，是非平衡面板。开发期52品种，2025核心候选60品种；两期交集51，9个仅在评估期出现的品种没有训练截距。CZCE:ZC在开发期有392行、评估期无核心记录。
+The full core has 61 products and 43,079 rows in an unbalanced panel. Development contains 52 products and the 2025 candidate core 60. Their intersection has 51; nine products appearing only in evaluation have no trained intercept. CZCE:ZC has 392 development rows and no evaluation core rows.
 
-下表10个训练不足120行的品种进入U_all，但不进入并列主要评分U_120。阈值按原开发期核心行数决定，不与R6的累计期权观察天数混用。
+The following ten products have fewer than 120 development training rows. They enter U_all but not the parallel primary U_120 evaluation. The threshold uses original development core counts and differs from R6's cumulative option-session maturity measure.
 
-| 品种 | 开发期训练行 | 2025覆盖行 | U_all | U_120 |
+| Product | Development training rows | 2025 coverage rows | U_all | U_120 |
 |---|---|---|---|---|
-| CZCE:PR | 2 | 237 | 纳入 | 不纳入 |
-| DCE:CS | 52 | 231 | 纳入 | 不纳入 |
-| DCE:JD | 74 | 242 | 纳入 | 不纳入 |
-| DCE:LG | 30 | 228 | 纳入 | 不纳入 |
-| DCE:LH | 59 | 243 | 纳入 | 不纳入 |
-| GFEX:PS | 2 | 212 | 纳入 | 不纳入 |
-| SHFE:AO | 48 | 239 | 纳入 | 不纳入 |
-| SHFE:NI | 47 | 240 | 纳入 | 不纳入 |
-| SHFE:PB | 48 | 242 | 纳入 | 不纳入 |
-| SHFE:SN | 46 | 233 | 纳入 | 不纳入 |
+| CZCE:PR | 2 | 237 | Included | Excluded |
+| DCE:CS | 52 | 231 | Included | Excluded |
+| DCE:JD | 74 | 242 | Included | Excluded |
+| DCE:LG | 30 | 228 | Included | Excluded |
+| DCE:LH | 59 | 243 | Included | Excluded |
+| GFEX:PS | 2 | 212 | Included | Excluded |
+| SHFE:AO | 48 | 239 | Included | Excluded |
+| SHFE:NI | 47 | 240 | Included | Excluded |
+| SHFE:PB | 48 | 242 | Included | Excluded |
+| SHFE:SN | 46 | 233 | Included | Excluded |
 
-这10个品种合计2,347个评估行；其中CZCE:PR、GFEX:PS只有2个训练行。不能把U_all结果当作全部商品都有长期训练历史的结果，U_120也不能覆盖新品种问题。
+These products contribute 2,347 evaluation rows. CZCE:PR and GFEX:PS have only 2 training rows each. U_all therefore does not represent uniformly long training histories, and U_120 does not solve the new-product problem.
 
-| 新品种 | 开发期训练行 | 2025覆盖行 | 评分处理 |
+| New product | Development training rows | 2025 coverage rows | Scoring treatment |
 |---|---|---|---|
-| CZCE:PL | 0 | 104 | 仅报告覆盖 |
-| DCE:BZ | 0 | 119 | 仅报告覆盖 |
-| GFEX:PD | 0 | 23 | 仅报告覆盖 |
-| GFEX:PT | 0 | 23 | 仅报告覆盖 |
-| SHFE:AD | 0 | 139 | 仅报告覆盖 |
-| SHFE:BU | 0 | 54 | 仅报告覆盖 |
-| SHFE:FU | 0 | 74 | 仅报告覆盖 |
-| SHFE:OP | 0 | 73 | 仅报告覆盖 |
-| SHFE:SP | 0 | 54 | 仅报告覆盖 |
+| CZCE:PL | 0 | 104 | Coverage only |
+| DCE:BZ | 0 | 119 | Coverage only |
+| GFEX:PD | 0 | 23 | Coverage only |
+| GFEX:PT | 0 | 23 | Coverage only |
+| SHFE:AD | 0 | 139 | Coverage only |
+| SHFE:BU | 0 | 54 | Coverage only |
+| SHFE:FU | 0 | 74 | Coverage only |
+| SHFE:OP | 0 | 73 | Coverage only |
+| SHFE:SP | 0 | 54 | Coverage only |
 
-新品种合计663个核心候选行，只报告覆盖；评分程序未读取这9个品种的目标列，未给其虚构截距或借用2025均值。这里“新品种”是指本研究开发期没有核心记录，不自动等同于期货在2025才上市。表中2025行按收益实现日划分，可能包含2024-12-31信号。
+The new-to-development products contribute 663 candidate rows and receive coverage reporting only. The scoring program did not read their target columns, invent intercepts or use 2025 means to supply them. “New” means absent from this study's development core, not necessarily a futures listing in 2025. Rows are assigned by outcome date and can include a 2024-12-31 signal.
 
-这些表完全来自冻结前的覆盖清单和已核训练长度，不读取目标补算。全品种覆盖见`tables/T5_product_coverage_full.csv`。
+These tables use the frozen coverage inventory and verified training counts, without reading targets to recompute coverage. See [T5_product_coverage_full.csv](tables/T5_product_coverage_full.csv) for all products.
 
-## 7. 关于留出期接触，必须说准确
+## 7. Precise disclosure of holdout exposure
 
-**本项目是已披露数据接触条件下、冻结规则后的历史留出评估，不是完全未见2025收益信息的严格盲测。** 原始2025数据在预处理时已生成收益并做逐行核验。实验阶段2没有读取名为y的2025目标列或计算误差，但批量读取了合法的past_return特征。
+**This is a historical holdout evaluation conducted after rule freezing under disclosed data exposure, not a strictly blinded test of entirely unseen 2025 return information.** Preprocessing constructed 2025 returns and checked them row by row. Prediction generation did not read the named 2025 y column or calculate forecast errors, but did read valid past_return features.
 
-当同一合约相邻日都在特征表中时，y(t)=past_return(t+1)。第二关确认12,039个评分目标中11,680个（约97.0%）能在较晚日期的2025特征中逐位重现。因此，“评分前从未读取2025收益”“2025收益信息不可见”都不准确。完整接触范围见[留出期说明](HOLDOUT_DISCLOSURE.md)。
+For adjacent feature observations of the same contract, y(t)=past_return(t+1). Independent verification found that 11,680 of the 12,039 scored targets (approximately 97.0%) can be reproduced exactly from later feature rows. Statements that 2025 returns had never been read, or were inaccessible before scoring, would be inaccurate. See [HOLDOUT_DISCLOSURE.md](HOLDOUT_DISCLOSURE.md).
 
-这个跨行重合并不自动意味着本行预测用了未来答案：t行的past_return覆盖前一日至t，y覆盖t至下一日；封存预测逐行使用t特征和固定的开发期参数，没有从t+1行取回目标、在2025重训，或用真实日均收益修正预测。真实均值只在评分阶段构造相对目标。
+This cross-row overlap does not automatically imply that a prediction used its future answer. The signal-day past_return covers the previous session to t, whereas y covers t to the next session. Fixed predictions use their own t features and development parameters, without retrieving a target from t+1, retraining on 2025 or adjusting forecasts with realized daily mean returns. Realized means enter only the relative scoring target.
 
-可信度来自规则与模型在评分前冻结、评分源码和索引在显式读取目标列前固定、没有据2025误差改模型，以及两次独立重算一致。哈希核验支持文件内容和记录先后的一致性，不能单独证明研究者此前绝无数据接触，也不能替代对代码时间索引的检查。
+Support for the evaluation rests on rules/models being fixed before scoring, scoring code and indices being committed before explicit target-column access, no model changes based on 2025 errors, and independent recomputations agreeing. Hash checks support content consistency and recorded ordering; they do not prove that researchers had no earlier exposure or replace time-index checks in the code.
 
-## 8. 结论范围与研究记录的价值
+## 8. Scope and contribution
 
-当前证据不支持所检验的PCR线性次日预测规格提供明确增量价值。它没有排除其他模型/期限存在信息；也没有保证换模型会有效。任何看过2025评分后提出的新设定都须标为探索，不能继续把2025当成未使用的最终测试集。
+The evidence does not clearly support incremental value from the tested linear next-day PCR specifications. It neither rules out information in other models/horizons nor guarantees that another model would work. Any specification proposed after viewing the 2025 scores must be treated as exploratory; 2025 cannot remain an unused final test set.
 
-推断还受单一年份评估、非平衡上市覆盖、零持仓相关缺失、未来端点可观测性选择、日终数据可得时点、重尾指标、部分品种训练历史短及持久预测变量等限制。固定效应和聚类解决的是特定均值/依赖结构，不能消除所有偏差。详细定义与限制见[METHODS.md](METHODS.md)。
+Limits include a single evaluation year, unbalanced listing coverage, zero-position-related missingness, selection on observable future endpoints, end-of-day availability, heavy-tailed predictors, short histories for some products, and persistent predictive regressors. Fixed effects and clustering address particular mean/dependence structures, not every source of bias. See [METHODS.md](METHODS.md).
 
-T1逐年横截面、覆盖和样本流，T2开发期描述与相关表，以及T3—T5的具体文件位置见[TABLE_INDEX.md](TABLE_INDEX.md)；方法文献和已核对出版信息见[REFERENCES.md](REFERENCES.md)。
+[TABLE_INDEX.md](TABLE_INDEX.md) locates T1 annual cross-sections, coverage and sample flow, T2 development descriptives/correlations, and T3–T5 results. [REFERENCES.md](REFERENCES.md) lists the methodological literature and verified publication details.
 
-本项目的可核验贡献是：以官方明细重构并保留来源链；清楚处理单位、合约身份、相邻日和样本损失；把同期、向前关联和固定模型外推分开；在冻结的比较中如实报告未获支持的预测假说。数据构造、开发期估计、留出期评分及结果表述已经过独立计算核对。
+The verifiable contributions are official-data construction with source provenance; explicit units, contract identity, adjacent sessions and sample attrition; separation of contemporaneous association, next-day conditional association and fixed-model extrapolation; and complete reporting of a predictive hypothesis that was not supported in the frozen comparisons. Data construction, development estimation, holdout scoring and result statements have undergone independent computational checks.
