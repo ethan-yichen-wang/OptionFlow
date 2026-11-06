@@ -6,11 +6,13 @@
 
 **Does today's option activity contain information about tomorrow's commodity futures return?**
 
-OptionFlow studies put–call ratios using official option and futures data from five Chinese commodity exchanges. It combines contract-aware data construction, panel inference, and a fixed-model historical holdout evaluation.
+OptionFlow studies put–call ratios using official option and futures data from five Chinese commodity exchanges. It combines contract-aware data construction, panel inference, and a fixed-model historical holdout evaluation. PCR here uses daily volume or open interest without identifying buyer- or seller-initiated order flow.
 
 **Main finding:** the prespecified daily linear models show no clear next-day predictive evidence. All eight primary 2025 comparisons have intervals spanning zero for incremental forecast accuracy relative to their no-PCR benchmarks. Some contemporaneous associations are stronger; those are a different question.
 
 ![2025 forecast comparisons](reports/figures/T5_MSE_forest.png)
+
+Each row is one prespecified comparison. *Absolute* means the signed raw next-day log price return; *Relative* means the return demeaned within the evaluation universe and date. OC/OG (RC/RG) add contract-month or commodity-level PCR to the no-PCR benchmark O0 (R0). U_all contains 51 products; U_120 contains 41 products with at least 120 development rows. Bars are pointwise 95% circular-block intervals. Values to the right of zero mean lower PCR-model squared error. The comparisons share dates and resampling indices, and the universes overlap.
 
 ## Study at a glance
 
@@ -55,9 +57,17 @@ python -m unittest discover -s tests -v
 
 Raw downloads, contract-level research panels and row-level predictions are not distributed here. The release contains study documentation, numerical code, model parameters and aggregate results. Full empirical reconstruction requires separately obtained inputs and the data construction described in the methods.
 
-This is a retrospective holdout assessment with disclosed data exposure: the 2025 inputs were processed before scoring. Models and scoring rules were fixed before their errors were evaluated. The 2025 period has now been used and cannot serve as a fresh test set for further model selection.
+This is a retrospective holdout assessment with disclosed data exposure: the 2025 inputs were processed before scoring. Models and scoring rules were fixed locally before their errors were evaluated; there was no public preregistration, and this repository was created after evaluation. Earlier analyses used overlapping 2019–2024 development data, without 2025. The 2025 period has now been used and cannot serve as a fresh test set for further model selection.
 
 The target is a close-to-close price return. The study does not estimate implementable trading profits, costs, slippage or a causal effect of sentiment. Its findings concern the tested specifications and sample.
+
+## Contributions and AI assistance
+
+Yichen Wang framed the research question, collected the 588 official source files, approved the key data and evaluation decisions, and is responsible for the final interpretation. ChatGPT and Claude assisted with design refinement, implementation, independent re-implementations, computational checks and drafting. The checks are AI-assisted computational review, rather than external peer review. Details and the frozen configuration's provenance are in [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
+
+## License
+
+Code is covered by the [MIT license](LICENSE). Original documentation and aggregate research outputs are covered by [CC BY 4.0](LICENSE-DOCS.md), to the extent rights are held by the author. These licenses do not cover exchange inputs or third-party material; raw data are not distributed.
 
 ## Author
 

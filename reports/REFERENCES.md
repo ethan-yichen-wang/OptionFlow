@@ -1,4 +1,4 @@
-# Methodological references and publication details
+# Research and methodological references
 
 [English](REFERENCES.md) | [简体中文](REFERENCES.zh-CN.md)
 
@@ -27,3 +27,9 @@ Publication metadata were checked on 2026-11-06. These sources provide backgroun
 7. Campbell, J. Y., & Thompson, S. B. (2008). Predicting Excess Stock Returns Out of Sample: Can Anything Beat the Historical Average? *The Review of Financial Studies*, **21**(4), 1509–1531. DOI: [10.1093/rfs/hhm055](https://doi.org/10.1093/rfs/hhm055). Verification: [publisher page](https://academic.oup.com/rfs/article-abstract/21/4/1509/1567518). The citation uses the 2008 issue year, distinguished from online publication in 2007. That paper's historical-average benchmark does not replace OptionFlow's O0/R0; every R²_OS comparison states its own benchmark.
 
 Block-bootstrap references do not automatically establish exact coverage for a fixed 20-day block, one evaluation year or intervals conditional on fixed training models. They are not used here to add nested-model tests, choose another benchmark or alter the frozen inference.
+
+## Related option-market research
+
+Pan, J., & Poteshman, A. M. (2006). The Information in Option Volume for Future Stock Prices. *The Review of Financial Studies*, **19**(3), 871–908. DOI: [10.1093/rfs/hhj024](https://doi.org/10.1093/rfs/hhj024). Verified against the [author-hosted published article](https://www.mit.edu/~junpan/volume.pdf).
+
+Their principal signal uses buyer-initiated option volume opening new positions on U.S. equities. OptionFlow uses publicly available daily volume and open interest on Chinese commodity futures, without trade-initiation or opening/closing classification. These are different information sets; OptionFlow does not directly replicate or refute that paper's finding. Related-research metadata checked on 2026-11-07.

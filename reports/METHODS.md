@@ -38,7 +38,7 @@ PCR^V=100\frac{\sum V^{put}}{\sum V^{call}},\qquad
 PCR^{OI}=100\frac{\sum OI^{put}}{\sum OI^{call}}.
 $$
 
-Do not average strike-level or month-level PCRs. A zero denominator is missing; a zero numerator with a positive denominator is valid zero. Missing values are not filled, and large values do not justify guessing another percentage conversion. Stored PCRs are percentage-scaled. Model-level cv/cp/gv/gp and their lags are all divided by 100 to obtain ratios.
+Do not average strike-level or month-level PCRs. A zero denominator is missing; a zero numerator with a positive denominator is valid zero. Missing values are not filled, and large values do not justify guessing another percentage conversion. Stored PCRs are percentage-scaled. Model-level cv/cp are the contract-month volume/open-interest PCRs; gv/gp are their commodity-level counterparts. All four and their lags are divided by 100 to obtain ratios. Field names are listed in the [data dictionary](../docs/DATA_DICTIONARY.md).
 
 Let d(t) be the next expected exchange session and c(i,t) the futures contract selected at t. The target is
 
@@ -96,7 +96,7 @@ $$
 
 Primary w=1; R8 uses month weights. Intersection scores are aggregated by commodity-day; independent month-level HC0 is not a substitute in R8. K_full includes full fixed-effect rank and identified slopes: it is 1,511 for primary C/G, with N=30,377. Tests use t(min(G−1,T−1))=t(51), with G=52 and T=1,455. Negative estimated variances are not silently set to zero to change significance; collinear terms are treated as unidentified.
 
-The four two-sided zero-PCR-coefficient hypotheses form one family at alpha=5%, with Holm adjustment. Unadjusted p-values and pointwise 95% intervals are retained. Supplementary p-values are unadjusted/descriptive. IQR associations only rescale the same coefficients; no equivalence margin was registered, so non-significance does not establish a zero effect.
+The four two-sided zero-PCR-coefficient hypotheses form one family at alpha=5%, with Holm adjustment. Unadjusted p-values and pointwise 95% intervals are retained. Supplementary p-values are unadjusted/descriptive. IQR associations only rescale the same coefficients; no equivalence margin was prespecified, so non-significance does not establish a zero effect.
 
 A supplementary commodity-clustered restricted WCR-t imposes the zero null and uses Rademacher weights, 10,000 repetitions, seed 20261106 and PCG64. Its p-value is (exceedances+1)/(B+1). This one-way-dependence supplement does not replace two-way inference. Projection-matrix precomputation reproduces the statistic from a full fixed-effect refit in each draw. It was checked against explicit-dummy synthetic refits and independently reproduced weights.
 

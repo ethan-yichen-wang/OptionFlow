@@ -1,5 +1,7 @@
 # Data and construction
 
+[English](DATA.md) | [简体中文](DATA.zh-CN.md)
+
 OptionFlow uses official historical option and futures downloads from DCE, CZCE, SHFE, INE and GFEX. The input snapshot contains 588 files with underlying dates in 2017–2025. The research panel uses signals from 2019 and outcomes through 2025-12-31. [source_manifest.csv](../config/source_manifest.csv) records the relative filenames, byte counts and SHA256 hashes of the official input snapshot; it contains file metadata rather than trading observations.
 
 ## Construction rules

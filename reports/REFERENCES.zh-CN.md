@@ -1,4 +1,4 @@
-# 方法文献与出版信息
+# 相关研究、方法文献与出版信息
 
 [English](REFERENCES.md) | [简体中文](REFERENCES.zh-CN.md)
 
@@ -27,3 +27,9 @@
 7. Campbell, J. Y., & Thompson, S. B. (2008). Predicting Excess Stock Returns Out of Sample: Can Anything Beat the Historical Average? *The Review of Financial Studies*, **21**(4), 1509–1531. DOI：[10.1093/rfs/hhm055](https://doi.org/10.1093/rfs/hhm055)。核对：[出版方文章页面](https://academic.oup.com/rfs/article-abstract/21/4/1509/1567518)。以正式卷期年份2008引用，区别于2007年在线发表。其历史平均基准不是本项目O0/R0的替代品；本项目始终明示每项R²_OS使用的基准。
 
 区块文献不自动验证本项目固定20日区块、单一评估年份或条件于固定训练模型的区间具有精确覆盖。这里也没有借上述文献补做嵌套模型检验、选择新基准或改变已冻结推断。
+
+## 相关期权市场研究
+
+Pan, J., & Poteshman, A. M. (2006). The Information in Option Volume for Future Stock Prices. *The Review of Financial Studies*, **19**(3), 871–908. DOI：[10.1093/rfs/hhj024](https://doi.org/10.1093/rfs/hhj024)。依据[作者托管的正式发表稿](https://www.mit.edu/~junpan/volume.pdf)核对。
+
+该文主要信号使用美国股票期权中由买方主动发起、用于开新仓的成交量。OptionFlow使用中国商品期货期权公开的日成交量与持仓量，不区分交易发起方向或开平仓。两者信息集不同，本研究不是该文的直接复现，也不直接否定其结论。相关研究出版信息核对日期为2026-11-07。

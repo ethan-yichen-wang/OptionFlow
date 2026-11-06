@@ -14,7 +14,7 @@
 | T2c | T2_denominator_diagnostics_R3_retired.csv | R3撤销后保留的分母诊断，不含额外回归 |
 | T3a | T3_primary_readable.csv | 四项主要推断原值及IQR尺度关联区间（log bp） |
 | T3b | T3_supplementary_inference.csv | 商品单向聚类SE/t、WCR未校正p，四项 |
-| T3c | T3_wild_descriptive.csv | 已预登记、10,000次WCR的完整原表，复制不变 |
+| T3c | T3_wild_descriptive.csv | 已预先设定、10,000次WCR的完整原表，复制不变 |
 | T4 | T4_consistency_lossless.csv | 原158行字符串保留，加R3撤销标记；补充p未校正 |
 | T5a | T5_primary_readable.csv | 八项主要评分，Delta bp²、R²百分数、两类区间和原值 |
 | T5b | T5_secondary_readable.csv | 二十项预定次要评分，仅点估计 |
