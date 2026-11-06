@@ -63,7 +63,7 @@ The target is a close-to-close price return. The study does not estimate impleme
 
 ## Contributions and AI assistance
 
-Yichen Wang framed the research question, collected the 588 official source files, approved the key data and evaluation decisions, and is responsible for the final interpretation. ChatGPT and Claude assisted with design refinement, implementation, independent re-implementations, computational checks and drafting. The checks are AI-assisted computational review, rather than external peer review. Details and the frozen configuration's provenance are in [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
+Yichen Wang coordinated this study and was responsible for defining the research question, collecting the 588 official source files, making key data and evaluation decisions, organizing staged reviews, and reviewing the final results. ChatGPT and Claude assisted with research-design discussions, code implementation, independent computational checks and manuscript preparation. See the [reproducibility scope](docs/REPRODUCIBILITY.md) for the scope of AI use, the computational review process and its limitations, and the frozen configuration's provenance.
 
 ## License
 
